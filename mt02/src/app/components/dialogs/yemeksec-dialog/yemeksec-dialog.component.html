@@ -1,0 +1,58 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>Yemek Seç</span>
+</mat-toolbar>
+
+
+<div class = "container">
+  <p>&nbsp;</p>
+  
+
+
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Değer Giriniz" (keyup)="Filtrele($event)">
+  </mat-form-field>
+
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="yemekAdi">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Yemek Adı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.yemekAdi}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="yemekGr">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Yemek Gram
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.yemekGr}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="yemekKal">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Yemek Kalori
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.yemekKal}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="islemler">
+    <mat-header-cell *matHeaderCellDef>İşlemler
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> 
+
+<button mat-icon-button>
+  <mat-icon aria-label="label"color='primary'matTooltip="Yemek Seç" (click)="YemekSec(kayit)">add</mat-icon>Seç
+</button>
+
+
+
+    </mat-cell>
+  </ng-container>
+
+  
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+</mat-paginator>
+</div>
+

@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm">
+    <mat-form-field appearance="outline">
+      <mat-label>Yemek Adı</mat-label>
+      <input matInput placeholder="Yemek Adı" formControlName="yemekAdi" name="yemekAdi" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Yemek Gram</mat-label>
+      <input matInput placeholder="Yemek Gram" formControlName="yemekGr" name="yemekGr" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Yemek Kalori</mat-label>
+      <input matInput placeholder="Yemek Kalori" formControlName="yemekKal" name="yemekKal" required
+        type="text">
+    </mat-form-field>
+  </form>
+  <button mat-raised-button color="primary" (click)="dialogRef.close(frm.value)"
+  [disabled]="frm.invalid">Kaydet</button>&nbsp;
+  <button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+</div>

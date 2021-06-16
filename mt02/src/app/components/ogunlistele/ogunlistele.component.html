@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>Öğün Listesi</h1>
+  <h3><b>Yemek Adı : </b>{{secYemek?.yemekAdi}}</h3>
+  <h3><b>Yemek Kalori : </b>{{secYemek?.yemekKal}}</h3>
+  <button mat-fab color="primary" matTooltip="Yemek Listesi" [routerLink]="['/yemek']">
+    <mat-icon aria-label="label">arrow_back</mat-icon>
+  </button>
+<p>&nbsp;</p>
+  <mat-form-field appearance="outline"style="width: 50%;">
+    <mat-label>Öğün Seçiniz</mat-label>
+   <mat-select placeholder="Oğün Seçiniz"(selectionChange)="OgunSec($event.value)">
+     <mat-option [value]="'ogun.ogunId'"*ngFor="let ogun of ogunler">{{ogun.ogunAdi}}</mat-option>
+   </mat-select>
+  </mat-form-field>
+  &nbsp;&nbsp;
+  <button mat-fab color="primary" matTooltip="Öğün Ekle" (click)="Kaydet()">
+    <mat-icon aria-label="label">add</mat-icon>
+  </button>
+<mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="ogunAdi">
+      <mat-header-cell *matHeaderCellDef> Öğün Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogunBilgi.ogunAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ogunKal">
+      <mat-header-cell *matHeaderCellDef> Öğün Kalori
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogunBilgi.ogunKal}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="ogunTarih">
+      <mat-header-cell *matHeaderCellDef> Öğün Tarihi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.ogunBilgi.ogunTarih}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İslemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit" matTooltip="Oğün Kaydını Sil"(click)="Sil(kayit)"> 
+        <button mat-icon-button color="warn">
+          <mat-icon aria-label="label">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+</div>

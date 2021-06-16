@@ -1,0 +1,58 @@
+<div class = "container">
+  <p>&nbsp;</p>
+  <h1>Yemekler</h1>
+
+
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Değer Giriniz" (keyup)="Filtrele($event)">
+  </mat-form-field>
+
+  <button mat-fab matTooltip="Yemek Ekle" color="primary"   (click)="Ekle()">
+    <mat-icon aria-label="label">add</mat-icon>
+  </button>
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="yemekAdi">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Yemek Adı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.yemekAdi}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="yemekGr">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Yemek Gram
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.yemekGr}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="yemekKal">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Yemek Kalori
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.yemekKal}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="islemler">
+    <mat-header-cell *matHeaderCellDef>İşlemler
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> 
+<button mat-icon-button>
+  <mat-icon aria-label="label" color='primary' matTooltip="Ogunleri Listele"[routerLink]="['/ogunlistele',kayit.yemekId]">article</mat-icon>
+</button>
+<button mat-icon-button>
+  <mat-icon aria-label="label"color='primary'matTooltip="Yemek Düzenle" (click)="Duzenle(kayit)">edit</mat-icon>
+</button>
+<button mat-icon-button>
+  <mat-icon aria-label="label"color='warn'matTooltip="Yemek Sil"(click)="Sil(kayit)" >delete</mat-icon>
+</button>
+
+
+    </mat-cell>
+  </ng-container>
+
+  
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator  [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+</mat-paginator>
+</div>
