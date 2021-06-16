@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="kayitId" />
+    </Key>
+    <Property Name="kayitId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kayitOgunId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="kayitYemekId" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ogun">
+    <Key>
+      <PropertyRef Name="ogunId" />
+    </Key>
+    <Property Name="ogunId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogunAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogunKal" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ogunTarih" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="uyeAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="uyeSifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Yemek">
+    <Key>
+      <PropertyRef Name="yemekId" />
+    </Key>
+    <Property Name="yemekId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="yemekAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="yemekGr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="yemekKal" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Kayit_ToOgun">
+    <End Role="Ogun" Type="Self.Ogun" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ogun">
+        <PropertyRef Name="ogunId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitOgunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToYemek">
+    <End Role="Yemek" Type="Self.Yemek" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yemek">
+        <PropertyRef Name="yemekId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitYemekId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB01ModelStoreContainer">
+    <EntitySet Name="Kayit" EntityType="Self.Kayit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ogun" EntityType="Self.Ogun" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yemek" EntityType="Self.Yemek" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Kayit_ToOgun" Association="Self.FK_Kayit_ToOgun">
+      <End Role="Ogun" EntitySet="Ogun" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToYemek" Association="Self.FK_Kayit_ToYemek">
+      <End Role="Yemek" EntitySet="Yemek" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

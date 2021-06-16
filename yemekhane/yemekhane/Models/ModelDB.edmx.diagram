@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0785195b578e4c9892170bdd94e02134" Name="Diagram1">
+        <EntityTypeShape EntityType="DB01Model.Kayit" Width="1.5" PointX="3.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB01Model.Ogun" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB01Model.Uye" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB01Model.Yemek" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="DB01Model.FK_Kayit_ToOgun" ManuallyRouted="false" />
+        <AssociationConnector Association="DB01Model.FK_Kayit_ToYemek" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
